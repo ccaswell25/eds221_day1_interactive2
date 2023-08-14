@@ -1,0 +1,23 @@
+---
+title: "eds221_day1_interactive2"
+format: html
+editor: visual
+---
+
+```{r}
+library(janitor)
+library(tidyverse)
+```
+
+```{r}
+
+#We can read in the data we just saved into our folder into R here. Using na we can remove any missing values from the columns. We can also use clean names to make all column names the same format. We can also rename a specific column using the rename() function.
+cholorophyll <- read_csv(here::here("data", "toolik_chlorophyll.csv"), na = c(".", "missing")) |> 
+  clean_names() %>% 
+  rename(chlorophyll_a = active_chl_a_ug_l)
+```
+
+```{r}
+ggplot(data = cholorophyll, aes(x=chlorophyll_a)) + 
+  geom_histogram()
+```
